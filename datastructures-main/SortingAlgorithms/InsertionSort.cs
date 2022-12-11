@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common;
 
-namespace Sorting
+namespace SortingAlgorithms
 {
     public class InsertionSort : SortStrategy
     {

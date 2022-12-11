@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sorting
+namespace SortingAlgorithms
 {
     public class BubbleSort : SortStrategy
     {
@@ -20,6 +20,30 @@ namespace Sorting
                 while (currentNodeNext != null)
                 {
                     if (currentNode.data > currentNodeNext.data)
+                    {
+                        (currentNode.data, currentNodeNext.data) = (currentNodeNext.data, currentNode.data);
+                        sort = true;
+                    }
+                    currentNode = currentNode.next;
+                    currentNodeNext = currentNodeNext.next;
+                }
+            }
+        }
+    }
+
+    public class BubbleSortInverse : SortStrategy
+    {
+        public override void Sort(IMyList list)
+        {
+            bool sort = true;
+            while (sort)
+            {
+                sort = false;
+                Node currentNode = list.GetFirst();
+                Node currentNodeNext = list.GetFirst().next;
+                while (currentNodeNext != null)
+                {
+                    if (currentNode.data < currentNodeNext.data)
                     {
                         (currentNode.data, currentNodeNext.data) = (currentNodeNext.data, currentNode.data);
                         sort = true;
