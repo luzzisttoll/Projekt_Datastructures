@@ -10,6 +10,7 @@ namespace Datastructures
     public class SingleLinkedList : IMyList
     {
         public Node head;
+        public Node tail;
         int _counter;
         private SortStrategy _strategy;
 
@@ -28,6 +29,23 @@ namespace Datastructures
                     currentNode = currentNode.next;
                 }
                 currentNode.next = node;
+            }
+        }
+
+        public void insertLastNode (Node newElement)
+        {
+            if (head == null)
+            {
+                head = newElement;
+            }
+            else
+            {
+                Node currentNode = head;
+                while (currentNode.next != null)
+                {
+                    currentNode = currentNode.next;
+                }
+                currentNode.next = newElement;
             }
         }
 
@@ -213,15 +231,60 @@ namespace Datastructures
             }
             return;
         }
+        public Node GetFirst()
+        {
+            return head;
+        }
+
+        public Node GetLast()
+        {
+            return tail;
+        }
+
+        public void RemoveLastElement()
+        {
+            var cur = head;
+            while (cur.next != null)
+            {
+                if (cur.next.next == null)
+                {
+                    cur.next = null;
+                    break;
+                }
+                cur = cur.next.next;
+            }
+        }
+
+        public void RemoveFirstElement()
+        {
+            if (head == null)
+            {
+                return;
+            }
+            head = head.next;
+        }
+
+        public override string ToString()
+        {
+            string retval = "";
+            if(head == null)
+            {
+                return "No elements in List";
+            }
+
+            var node = head;
+            while (node != null)
+            {
+                retval += "| " + node.data + " ";
+                node = node.next;
+            }
+            retval += "|";
+            return retval;
+        }
 
         public void SetSortStrategy(SortStrategy sortStrategy)
         {
             _strategy = sortStrategy;
-        }
-
-        public Node GetFirst()
-        {
-            return head;
         }
 
         public void Sort()
