@@ -19,6 +19,7 @@ namespace Datastructures
         {
             var AddNode = new Node(newElement, null);
             prvList.insertLastNode(AddNode);
+            Notify();
             return AddNode;
         }
 
@@ -26,6 +27,7 @@ namespace Datastructures
         {
             var cur = prvList.GetFirst();
             prvList.RemoveFirstElement();
+            Notify();
             return cur;
         }
 
@@ -56,6 +58,5 @@ namespace Datastructures
                 observer.Update(this);
             }
         }
-
     }
 }
