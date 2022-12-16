@@ -11,28 +11,25 @@ namespace SortingAlgorithms
     {
         public override void Sort(IMyList list)
         {
-            var cur = list.GetFirst();
-            while (cur != null)
+            // move through all elements starting with the first one
+            var current = list.GetFirst();
+            while (current != null)
             {
-                var nextSmallest = getNextSmallest(cur);
-                if (nextSmallest != cur)
-                {
-                    list.SwitchNode3(cur, nextSmallest);
-                }
+                // iterate thourgh all other elements, search for the smallest and change
+                var nextSmallest = getNextSmallest(current);
+                if (nextSmallest != current)
+                    list.SwitchNode3(current, nextSmallest);
+                current = current.next;
             }
-            Console.WriteLine("SelectionSorted List ");
+            Console.WriteLine("SelectionSorted list ");
         }
 
-        private Node getNextSmallest (Node startNode)
+        private Node getNextSmallest(Node startNode)
         {
             Node smallest = startNode;
-            for (var comparer = startNode.next; comparer.next != null; comparer = comparer.next)
-            {
+            for (var comparer = startNode.next; comparer != null; comparer = comparer.next)
                 if (comparer.data < smallest.data)
-                {
                     smallest = comparer;
-                }
-            }
             return smallest;
         }
     }
