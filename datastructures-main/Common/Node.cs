@@ -10,6 +10,8 @@ namespace Common
     {
         public int data;
         public Node next;
+        public Node LtNode;
+        public Node RtNode;
         // Constructor to create a new node
         public Node(int d, Node _next)
         {
