@@ -14,20 +14,18 @@ namespace SortAlgorithmTest
         {
         }
 
-    //    [Test]
-    //    public void TestStrategyPatternQuickSort_InsertNumbers1865_ReturnRightOrder()
-    //    {
-    //        var linkedList = new SingleLinkedList();
-    //        linkedList.SetSortStrategy(new QuickSort());
-    //        linkedList.insertLast(2);
-    //        linkedList.insertLast(7);
-    //        linkedList.insertLast(5);
-    //        linkedList.insertLast(6);
-    //        linkedList.Sort();
-    //        Assert.AreEqual(linkedList.head.data, 2);
-    //        Assert.AreEqual(linkedList.head.next.data, 5);
-    //        Assert.AreEqual(linkedList.head.next.next.data, 6);
-    //        Assert.AreEqual(linkedList.head.next.next.next.data, 7);
-    //    }
+        [Test]
+        public void TestStrategyPatternQuickSort_InsertNumbers1865_ReturnRightOrder()
+        {
+            int[] arr = { 10, 80, 30, 90, 40, 50, 70 };
+            int left = 0; 
+            int right = arr.Length - 1;
+
+            QuickSort quicksort = new QuickSort();
+
+            quicksort.QuicksortMethod(arr, left, right);
+
+            CollectionAssert.AreEqual(arr, new int[] { 10, 30, 40, 50, 70, 80, 90});
+        }
     }
 }
