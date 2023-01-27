@@ -10,55 +10,50 @@ namespace Datastructures
 {
     public class BinaryTree
     {
+        public Node root;
 
-        Node newNode = new Node(0, null);
-        public Node Root { get; set; }
 
-        public bool Insert(int value)
+        public void Insert(int data)
         {
-            Node before = null, after = this.Root;
-            while (after != null)
-            {
-                before = after;
-                //Is new node in left tree?
-                if (value < after.data)
-                    after = after.LtNode;
-                //Is new node in right tree?
-                else if (value > after.data)
-                    after = after.RtNode;
-                else
-                {
-                    //Exist same value
-                    return false;
-                }
-            }
-            
-            newNode.data = value;
-            if (this.Root == null)//Tree ise empty
-                this.Root = newNode;
-            else
-            {
-                if (value < before.data)
-                    before.LtNode = newNode;
-                else
-                    before.RtNode = newNode;
-            }
-            return true;
+            root = InsertRecursive(root, data);
         }
 
-        public void PostOrder(Node parent)
+        private Node InsertRecursive(Node current, int data)
         {
-            if (parent != null)
+            if (current == null)
             {
-                PostOrder(parent.LtNode);
-                PostOrder(parent.RtNode);
-                Console.Write(parent.data + " ");
+                return new Node(data, null);
             }
+
+            if (data < current.data)
+            {
+                current.LtNode = InsertRecursive(current.LtNode, data);
+            }
+            else if (data > current.data)
+            {
+                current.RtNode = InsertRecursive(current.RtNode, data);
+            }
+
+            return current;
+        }
+
+        public void PostOrder()
+        {
+            PostOrderRecursive(root);
+        }
+
+        private void PostOrderRecursive(Node current)
+        {
+            if (current == null)
+                return;
+
+            PostOrderRecursive(current.LtNode);
+            PostOrderRecursive(current.RtNode);
         }
 
         public int GetDepth()
         {
-            return this.GetDepth(this.Root);
+            return this.GetDepth(root);
         }
 
         public int GetDepth(Node parent)
@@ -68,7 +63,7 @@ namespace Datastructures
 
         public void Delete(int value)
         {
-            this.Root = Delete(this.Root, value);
+            root = Delete(root, value);
         }
 
         private Node Delete(Node parent, int key)
@@ -108,11 +103,6 @@ namespace Datastructures
                 node = node.LtNode;
             }
             return minv;
-        }
-
-        public override string ToString()
-        {
-            return newNode.ToString();
         }
     }
 }

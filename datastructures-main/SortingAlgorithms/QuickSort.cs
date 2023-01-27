@@ -1,49 +1,55 @@
-﻿using Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common;
 
 namespace SortingAlgorithms
 {
-    public class QuickSort : SortStrategy
+    public class QuickSort
     {
-        public override void Sort(IMyList list)
+        static public int Partition(int[] arr, int left, int right)
         {
-            static Node quickSort(Node head, Node end)
+            int pivot;
+            pivot = arr[left];
+            while (true)
             {
-                if (head != end)
+                while (arr[left] < pivot)
                 {
-                    Node temp = partition(head, end);
-                    quickSort(head, temp);
-                    quickSort(temp.next, end);
+                    left++;
                 }
-                return head;
+                while (arr[right] > pivot)
+                {
+                    right--;
+                }
+                if (left < right)
+                {
+                    int temp = arr[right];
+                    arr[right] = arr[left];
+                    arr[left] = temp;
+                }
+                else
+                {
+                    return right;
+                }
             }
-
-            static Node partition(Node head, Node end)
+        }
+        public void Sort(int[] arr, int left, int right)
+        {
+            int pivot;
+            if (left < right)
             {
-                int pivot = end.data;
-                Node i = head;
-                for (Node j = head; j != end; j = j.next)
+                pivot = Partition(arr, left, right);
+                if (pivot > 1)
                 {
-                    if (j.data <= pivot)
-                    {
-                        i = (i == null) ? head : i.next;
-                        int temp = i.data;
-                        i.data = j.data;
-                        j.data = temp;
-                    }
+                    Sort(arr, left, pivot - 1);
                 }
-                i = (i == null) ? head : i.next;
-                int temp2 = i.data;
-                i.data = end.data;
-                end.data = temp2;
-                return i;
+                if (pivot + 1 < right)
+                {
+                    Sort(arr, pivot + 1, right);
+                }
             }
-
-
         }
     }
 }

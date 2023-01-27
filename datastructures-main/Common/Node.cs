@@ -18,5 +18,10 @@ namespace Common
             data = d;
             next = _next;
         }
+
+        public override string ToString()
+        {
+            return this.data.ToString();
+        }
     }
 }
