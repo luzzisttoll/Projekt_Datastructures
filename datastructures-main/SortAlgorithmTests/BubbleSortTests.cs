@@ -18,7 +18,7 @@ namespace SortAlgorithmTest
         public void TestStrategyPatternBubbleSort_InsertNumbers1865_ReturnRightOrder()
         {
             var linkedList = new SingleLinkedList();
-            linkedList.SetSortStrategy(new BubbleSort());
+            linkedList.SetSortStrategy(SortFactory.StrategyGenerator("BubbleSort"));
             linkedList.insertLast(1);
             linkedList.insertLast(8);
             linkedList.insertLast(5);
@@ -34,7 +34,7 @@ namespace SortAlgorithmTest
         public void TestStrategyPatternBubbleSortInverse_InsertNumbers1865_ReturnRightOrder()
         {
             var linkedList = new SingleLinkedList();
-            linkedList.SetSortStrategy(new BubbleSortInverse());
+            linkedList.SetSortStrategy(SortFactory.StrategyGenerator("BubbleSortInverse"));
             linkedList.insertLast(1);
             linkedList.insertLast(8);
             linkedList.insertLast(5);

@@ -18,7 +18,7 @@ namespace SortAlgorithmTest
         public void TestStrategyPatternSelectionSort_InsertNumbers1865_ReturnRightOrder()
         {
             var linkedList = new SingleLinkedList();
-            linkedList.SetSortStrategy(new SelectionSort());
+            linkedList.SetSortStrategy(SortFactory.StrategyGenerator("SelectionSort"));
             linkedList.insertLast(1);
             linkedList.insertLast(8);
             linkedList.insertLast(5);
@@ -26,7 +26,7 @@ namespace SortAlgorithmTest
             linkedList.Sort();
             Assert.AreEqual(linkedList.head.data, 1);
             Assert.AreEqual(linkedList.head.next.data, 5);
-            Assert.AreEqual(linkedList.head.next.next.data, 6);
+            Assert.AreEqual(linkedList.head.next.next.data, 6); 
             Assert.AreEqual(linkedList.head.next.next.next.data, 8);
         }
     }
